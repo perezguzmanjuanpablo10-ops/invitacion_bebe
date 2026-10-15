@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe9f2">
+<title>Una sorpresa muy especial</title>
+
+<style>
+:root {
+    --rosa: #ffb9d0;
+    --lila: #d9c9ff;
+    --azul: #bdeaff;
+    --menta: #c9f1df;
+    --amarillo: #ffe6a0;
+    --texto: #80536f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(
+        160deg, #fff5e8, #ffe4ef, #e9e2ff, #dff6ff
+    );
+    background-size: 300% 300%;
+    animation: fondo 12s ease infinite;
+}
+
+@keyframes fondo {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+button, a {
+    font: inherit;
+}
+
+.cielo {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.nube {
+    position: absolute;
+    width: 160px;
+    height: 50px;
+    background: #ffffff90;
+    border-radius: 50px;
+    animation: nube 18s linear infinite alternate;
+}
+
+.nube::before, .nube::after {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.nube::before {
+    width: 70px;
+    height: 70px;
+    left: 20px;
+}
+
+.nube::after {
+    width: 85px;
+    height: 85px;
+    right: 15px;
+}
+
+.nube.uno { top: 12%; left: -40px; }
+.nube.dos { top: 45%; right: -50px; animation-delay: -7s; }
+
+@keyframes nube {
+    to { transform: translateX(50px); }
+}
+
+.estrella {
+    position: absolute;
+    font-size: 24px;
+    animation: brillar 2.5s ease-in-out infinite alternate;
+}
+
+.e1 { top: 8%; left: 12%; color: #ffbf55; }
+.e2 { top: 20%; right: 12%; color: #ff91b7; }
+.e3 { top: 58%; left: 7%; color: #b39aff; }
+.e4 { top: 68%; right: 8%; color: #ffbe59; }
+
+@keyframes brillar {
+    from { transform: scale(.8) rotate(-10deg); opacity: .55; }
+    to { transform: scale(1.2) rotate(10deg); opacity: 1; }
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: min(92%, 470px);
+    margin: auto;
+    padding: 35px 0 50px;
+    text-align: center;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: #ffffffc9;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 9px 17px;
+    color: #b16e97;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h1 {
+    margin: 20px auto 12px;
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.18;
+    color: #a15f87;
+}
+
+.intro {
+    max-width: 350px;
+    margin: auto;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #8e6c85;
+}
+
+/* ARCOÍRIS */
+
+.arcoiris {
+    position: relative;
+    width: 230px;
+    height: 115px;
+    margin: 23px auto -25px;
+    overflow: hidden;
+}
+
+.arco {
+    position: absolute;
+    left: 50%;
+    bottom: -100px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: 13px solid transparent;
+    width: 220px;
+    height: 220px;
+}
+
+.a1 { border-color: #ffb9cf; }
+.a2 { width: 194px; height: 194px; bottom: -87px; border-color: #ffdda0; }
+.a3 { width: 168px; height: 168px; bottom: -74px; border-color: #c5efcf; }
+.a4 { width: 142px; height: 142px; bottom: -61px; border-color: #bde7ff; }
+.a5 { width: 116px; height: 116px; bottom: -48px; border-color: #d6c4ff; }
+
+/* OSITO Y CARTA */
+
+.escena {
+    position: relative;
+    height: 295px;
+    margin-top: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.nube-base {
+    position: absolute;
+    bottom: 2px;
+    width: 310px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ffffffbd;
+}
+
+.osito {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 155px;
+    line-height: 1;
+    filter: drop-shadow(0 9px 6px #87657a25);
+    z-index: 2;
+    animation: llegada 1.5s ease both,
+               ositoFlota 3s ease-in-out 1.5s infinite;
+}
+
+@keyframes llegada {
+    from { opacity: 0; transform: translate(-50%, 75px) scale(.65); }
+    to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes ositoFlota {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -7px; }
+}
+
+.tarjeta {
+    position: absolute;
+    z-index: 3;
+    top: 83px;
+    left: 50%;
+    width: 176px;
+    min-height: 124px;
+    padding: 13px 10px;
+    transform: translateX(-50%) rotate(-3deg);
+    border: 3px solid white;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #fffefb, #fff0d9);
+    box-shadow: 0 8px 20px #8f64831c;
+    animation: entregar 1.2s ease-out 1s both;
+}
+
+@keyframes entregar {
+    from { opacity: 0; translate: 0 35px; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+.tarjeta .corazon {
+    color: #f28bad;
+    font-size: 23px;
+}
+
+.tarjeta h2 {
+    font-family: Georgia, serif;
+    font-size: 19px;
+    margin: 4px 0;
+    color: #b16e97;
+}
+
+.tarjeta p {
+    font-size: 11px;
+    color: #a2879c;
+}
+
+.flor {
+    position: absolute;
+    z-index: 4;
+    font-size: 29px;
+}
+
+.f1 { left: 9%; bottom: 35px; }
+.f2 { right: 8%; bottom: 48px; }
+.f3 { left: 14%; top: 80px; }
+.f4 { right: 13%; top: 65px; }
+
+/* SOBRE */
+
+.instruccion {
+    margin: 6px 0 14px;
+    font-size: 14px;
+    color: #946c8b;
+}
+
+.sobre {
+    position: relative;
+    width: min(280px, 88%);
+    height: 175px;
+    margin: auto;
+    cursor: pointer;
+    perspective: 1000px;
+    -webkit-tap-highlight-color: transparent;
+    filter: drop-shadow(0 10px 14px #9e6c8a25);
+}
+
+.sobre-base {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(140deg, #ffc7dc, #f3a8c9);
+}
+
+.sobre-base::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ffdae7;
+    clip-path: polygon(0 0, 100% 0, 50% 65%);
+}
+
+.sobre-base::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ef9fc0;
+    clip-path: polygon(0 100%, 0 0, 50% 58%, 100% 0, 100% 100%);
+}
+
+.solapa {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: #f5aecb;
+    clip-path: polygon(0 0, 100% 0, 50% 64%);
+    transform-origin: top center;
+    transition: transform .8s ease;
+}
+
+.sello {
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    z-index: 6;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #fff5dc;
+    color: #ed83a8;
+    font-size: 24px;
+    transition: opacity .3s;
+}
+
+.sobre.abierto .solapa {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.sobre.abierto .sello {
+    opacity: 0;
+}
+
+.sobre:focus-visible {
+    outline: 3px solid #a78bfa;
+    outline-offset: 8px;
+}
+
+/* INVITACIÓN */
+
+.invitacion {
+    display: none;
+    margin: 32px auto 0;
+    padding: 28px 21px;
+    background: #fffdf8ed;
+    border: 3px solid white;
+    border-radius: 27px;
+    box-shadow: 0 12px 32px #8e66801c;
+}
+
+.invitacion.visible {
+    display: block;
+    animation: mostrar .9s ease both;
+}
+
+@keyframes mostrar {
+    from { opacity: 0; transform: translateY(28px) scale(.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sello-superior {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.invitacion h2 {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    line-height: 1.3;
+    color: #ad6a91;
+    margin-bottom: 16px;
+}
+
+.invitacion p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #85677e;
+}
+
+.fecha {
+    display: block;
+    margin: 22px auto;
+    padding: 17px 12px;
+    border: 2px dashed #e9a6c6;
+    border-radius: 17px;
+    background: linear-gradient(100deg, #ffe4ed, #fff0c9, #e4f7ef);
+    color: #996384;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+/* UBICACIÓN */
+
+.ubicacion {
+    margin-top: 24px;
+    padding: 21px 15px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff0f6, #edf8ff);
+    border: 1px solid white;
+}
+
+.ubicacion .icono {
+    font-size: 32px;
+    margin-bottom: 7px;
+}
+
+.ubicacion h3 {
+    font-family: Georgia, serif;
+    color: #a15f87;
+    font-size: 21px;
+    margin-bottom: 9px;
+}
+
+.ubicacion p {
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.boton-mapa {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 13px 20px;
+    background: linear-gradient(100deg, #ef9fc0, #c5b4fa);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px #a37ba52c;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.boton-mapa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 18px #a37ba540;
+}
+
+.detalle {
+    margin-top: 20px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #b37d9b;
+}
+
+.pie {
+    margin-top: 24px;
+    font-size: 22px;
+    color: #db8aaa;
+}
+
+@media (max-width: 360px) {
+    main { width: 94%; }
+    .escena { transform: scale(.93); }
+    .invitacion { padding: 23px 15px; }
+    .fecha { font-size: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cielo" aria-hidden="true">
+    <div class="nube uno"></div>
+    <div class="nube dos"></div>
+    <span class="estrella e1">✦</span>
+    <span class="estrella e2">♡</span>
+    <span class="estrella e3">✧</span>
+    <span class="estrella e4">★</span>
+</div>
+
+<main>
+
+    <div class="etiqueta">UNA SORPRESA LLENA DE AMOR</div>
+
+    <h1>¡Hola! Tenemos una sorpresa para ti</h1>
+
+    <p class="intro">
+        Hay algo muy especial que queremos compartir
+        contigo. Nos encantaría vivir este momento
+        a tu lado.
+    </p>
+
+    <div class="arcoiris" aria-hidden="true">
+        <div class="arco a1"></div>
+        <div class="arco a2"></div>
+        <div class="arco a3"></div>
+        <div class="arco a4"></div>
+        <div class="arco a5"></div>
+    </div>
+
+    <section class="escena" aria-label="Osito con una carta">
+        <div class="nube-base"></div>
+        <span class="flor f1">🌼</span>
+        <span class="flor f2">🌷</span>
+        <span class="flor f3">✨</span>
+        <span class="flor f4">💛</span>
+
+        <div class="osito">🧸</div>
+
+        <div class="tarjeta">
+            <div class="corazon">♥</div>
+            <h2>¡Para ti!</h2>
+            <p>Una invitación especial</p>
+        </div>
+    </section>
+
+    <p class="instruccion" id="instruccion">
+        💌 Toca el sobre para abrir tu invitación
+    </p>
+
+    <div class="sobre"
+         id="sobre"
+         role="button"
+         tabindex="0"
+         aria-label="Abrir invitación"
+         aria-expanded="false">
+
+        <div class="sobre-base"></div>
+        <div class="solapa"></div>
+        <div class="sello">♥</div>
+    </div>
+
+    <section class="invitacion" id="invitacion">
+
+        <div class="sello-superior">🌈 ☁️ 💗</div>
+
+        <h2>¡Estás invitado a un día muy especial!</h2>
+
+        <p>
+            Mis papis y yo estamos muy emocionados
+            porque queremos que nos acompañes en un
+            momento lleno de amor, ilusión y felicidad.
+        </p>
+
+        <div class="fecha">
+            26 de diciembre<br>
+            de 2026
+        </div>
+
+        <p>
+            Queremos compartir contigo esta bonita
+            aventura y vivir juntos una sorpresa
+            que guardaremos siempre en el corazón.
+        </p>
+
+        <!-- DIRECCIÓN DEL EVENTO -->
+
+        <div class="ubicacion">
+
+            <div class="icono">📍</div>
+
+            <h3>¿Dónde nos vemos?</h3>
+
+            <p><strong>Jardín de Fiestas La Casita Colmena</strong></p>
+
+            <p>
+                Pinos 35, Francisco I. Madero,<br>
+                54467 Ciudad Nicolás Romero,<br>
+                Estado de México.
+            </p>
+
+            <a
+                class="boton-mapa"
+                href="https://www.google.com/maps/search/?api=1&query=Jard%C3%ADn+De+Fiestas+La+Casita+Colmena%2C+Pinos+35%2C+Francisco+I.+Madero%2C+54467+Ciudad+Nicol%C3%A1s+Romero%2C+M%C3%A9xico"
+                target="_blank"
+                rel="noopener noreferrer">
+                📍 Cómo llegar con Google Maps
+            </a>
+
+        </div>
+
+        <p class="detalle">
+            ¡Nos encantaría contar con tu presencia!
+        </p>
+
+        <div class="pie">♡ ✨ ♡</div>
+
+    </section>
+
+</main>
+
+<script>
+const sobre = document.getElementById("sobre");
+const invitacion = document.getElementById("invitacion");
+const instruccion = document.getElementById("instruccion");
+
+let abierto = false;
+
+function abrirInvitacion() {
+    abierto = !abierto;
+
+    sobre.classList.toggle("abierto", abierto);
+    sobre.setAttribute("aria-expanded", String(abierto));
+
+    if (abierto) {
+        instruccion.textContent =
+            "¡Una invitación preparada con amor! 💗";
+
+        setTimeout(() => {
+            invitacion.classList.add("visible");
+
+            invitacion.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        }, 450);
+
+    } else {
+        invitacion.classList.remove("visible");
+        instruccion.textContent =
+            "💌 Toca el sobre para abrir tu invitación";
+    }
+}
+
+sobre.addEventListener("click", abrirInvitacion);
+
+sobre.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        abrirInvitacion();
+    }
+});
+</script>
+
+</body>
+</html>
